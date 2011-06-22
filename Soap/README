@@ -1,0 +1,28 @@
+Shift8 SOAP Extension
+
+Simple SOAP extension for the Shift8 library, which exposes all the methods over SOAP requests. The current implementation
+is making use of the SOAP Persistent objects to preserve an open connection with the remote asterisk server. However it is
+the application's responsibility to properly Ping the remote server so that the connection remains open.
+
+The included WSDL is from the autodiscovered library using the Zend Framework. One could avoid using Zend_Soap and use directly
+Soap functionality from PHP. (Zend_Soap_Server is pretty much a wrapper over SoapServer)
+
+Prerequisites
+-------------
+
+* An asterisk server (duh)
+* Shift8
+* Zend_Soap from Zend Framework version > 1.9 (http://framework.zend.com)
+
+Installation
+------------
+
+Copy the contents of this folder to a directory under a PHP enabled apache server. In the index.php one should edit the configuration
+options to match it's system.
+
+Known Issues
+------------
+
+Currently, Shift8_Event is not properly exposed over SOAP. Variable $variables is declared public so as to be able to send it over 
+SOAP. I am guessing I should modify the WSDL file on my own. (Anyone willing to help out, please do so!)
+

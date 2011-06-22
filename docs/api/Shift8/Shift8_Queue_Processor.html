@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Shift8_Queue_Processor</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Shift8_Queue_Processor</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Abstract class defining a Shift8 Queue Processor.</p>
+<p class="description"><p>The Queue processor is responsible for inserting, retrieving and updating the Shift8 Queue. This has been implemented  as a seperate mechanism to allow the Queue to be implemented into various data structures such as Databases (mysql, postgresql, oracle etc),  flat based files, or whatever the user requires, whithout having to interfere with the internals of the Shift8 library</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Paris Stamatopoulos</li>
+				<li><span class="field">version:</span> 0.1</li>
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">usedby:</span> <a href="../Shift8/Shift8.html">Shift8</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Queue---Processor.php.html">/Queue/Processor.php</a> (line <span class="field">30</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../Shift8/Shift8_Queue_Processor_Mysql.html">Shift8_Queue_Processor_Mysql</a></td>
+					<td>
+											Provides a simple queuing mechanism using Mysql to store the actual Shift8 Queue.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																				
+												<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#insert" title="details" class="method-name">insert</a>
+											(<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>&nbsp;<span class="var-name">$item</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Shift8_Queue_Item[]</span>
+										<a href="#queue" title="details" class="method-name">queue</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../Shift8/Shift8_Event.html">Shift8_Event</a>|Shift8_Event[]</span>
+										<a href="#retrieveResponse" title="details" class="method-name">retrieveResponse</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$queue_id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#update" title="details" class="method-name">update</a>
+											(<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>&nbsp;<span class="var-name">$item</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodinsert" id="insert"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">insert</span> (line <span class="line-number">38</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function responsible for inserting a new queue item to the Shift8 Queue</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The number of the queue position for this command</li>
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			insert
+		</span>
+					(<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>&nbsp;<span class="var-name">$item</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>
+				<span class="var-name">$item</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../Shift8/Shift8_Queue_Processor_Mysql.html#methodinsert">Shift8_Queue_Processor_Mysql::insert()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodqueue" id="queue"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">queue</span> (line <span class="line-number">54</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieves the unprocessed commands in the queue</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Shift8_Queue_Item[]</span>
+		<span class="method-name">
+			queue
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../Shift8/Shift8_Queue_Processor_Mysql.html#methodqueue">Shift8_Queue_Processor_Mysql::queue()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodretrieveResponse" id="retrieveResponse"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">retrieveResponse</span> (line <span class="line-number">63</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieves the response of a processed command based on the queue id</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Shift8/Shift8_Event.html">Shift8_Event</a>|Shift8_Event[]</span>
+		<span class="method-name">
+			retrieveResponse
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$queue_id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$queue_id</span><span class="var-description">: The queue id to retrieve information for</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../Shift8/Shift8_Queue_Processor_Mysql.html#methodretrieveResponse">Shift8_Queue_Processor_Mysql::retrieveResponse()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodupdate" id="update"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">update</span> (line <span class="line-number">47</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function responsible for updating an existing queued command with command results</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			update
+		</span>
+					(<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>&nbsp;<span class="var-name">$item</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../Shift8/Shift8_Queue_Item.html">Shift8_Queue_Item</a></span>
+				<span class="var-name">$item</span><span class="var-description">: The newly updated item, retrieved from the remote source</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../Shift8/Shift8_Queue_Processor_Mysql.html#methodupdate">Shift8_Queue_Processor_Mysql::update()</a>
+							</li>
+				</ul>
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Fri, 18 Dec 2009 11:33:40 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,159 @@
+Shift8 Asterisk Manager Library
+
+Shift8 provides a simple mechanism over the AJAM asterisk interface. Apart from the obvious reason of providing
+an easy way to talk with a remote asterisk server, the main benefit of having an intermediate library between a 
+software and an Asterisk server, is mostly that you can isolate the remote Asterisk, protecting the credentials 
+and the entire PBX
+
+Features
+--------
+
+- Shift8 supports pretty much all asterisk manager commands: 
+
+	* QueueAdd
+	* QueueRemove
+	* QueuePause
+	* QueueStatus
+	* QueueSummary
+	* Agents
+	* QueueRule
+	* QueuePenalty
+	* Queues
+	* QueueLog
+	* SipShowPeer
+	* SipPeers
+	* PlayDTMF
+	* SIPnotify
+	* SIPshowregistry
+	* VoicemailUsersList
+	* IAXpeers
+	* IAXpeerlist
+	* IAXnetstats
+	* UnpauseMonitor
+	* PauseMonitor
+	* ChangeMonitor
+	* StopMonitor
+	* Monitor
+	* JabberSend
+	* AGI
+	* DBDelTree
+	* DBDel
+	* DBGet
+	* DBGet
+	* Bridge
+	* ParkedCalls
+	* ShowDialPlan
+	* ModuleCheck
+	* ModuleLoad
+	* CoreShowChannel
+	* Reload
+	* CoreStatus
+	* CoreSettings
+	* UserEvent
+	* SendText
+	* ListCommands
+	* MailboxCount
+	* MailboxStatus
+	* AbsoluteTimeout
+	* ExtensionState
+	* Command
+	* Originate
+	* Atxfer
+	* Redirect
+	* ListCategories
+	* CreateConfig
+	* Status
+	* GetConfigJSON
+	* GetConfig
+	* GetVar
+	* Setvar
+	* Hangup
+	* Challenge
+	* Events
+	* Login
+	* Logoff
+	* Ping
+	* WaitEvent
+
+	Not yet implemented:
+	
+	* UpdateConfig
+	* SipQualifyPeer
+
+- Provides a Event listener mechanism, so that when an event occurs to notify a part of a system. The Event listener can also contain a filter 
+  to notify the listener for specific events only
+
+- Provides a Debug listener to assist in the debugging of the application your are creating. (Currently containing a Dummy (stdout) and a syslog 
+  debug listener)
+
+- Provides a Queue manager interface. Using Shift8 one could create a two part application that instead of executing a command directly to the 
+  remote asterisk, would queue the command via a Queue Processor, and another application would run, execute the commands in Queue for a specific 
+  interval, and store the results into the same Queue for the 'frontend' application to retrieve (See also Shift8 Queue Mysql Processor section)
+
+- Supports a common (as much as possible) infrastucture for all results coming from the remote asterisk via Shift8_Event
+
+- Shift8 library is properly documented and all the return values from the internal functions are created in a way to make the library SOAP
+  discoverable. 
+
+Prerequisites
+-------------
+
+* Asterisk (with AJAM interface)
+  Shift8 has been developed under Asterisk 1.6 but I don't think there will be any problems with version 1.4
+* PHP5 
+* PHP5 Curl extension (apt-get install php5-curl under debian/ubuntu)
+
+Optional:
+* PHP5 Mysql extension (used for the Shift8 Queue Mysql Processor)
+
+Installation
+------------
+
+You must initially enable the manager interface in the asterisk by editing asterisk/manager.conf. You need to set:
+enabled = yes
+webenabled = yes
+
+You also need to create a manager for Shift8 to connect with:
+[manager]
+secret=secret
+deny=0.0.0.0/0.0.0.0
+permit=127.0.0.1/255.255.255.0
+read = system,call,log,verbose,agent,user,config,dtmf,reporting,cdr,dialplan
+write = system,call,agent,user,config,command,reporting,originate
+
+Finally you must edit http.conf and enable it by setting 'enable' attibute to yes.
+
+One could also setup bindaddr to explicitly define where the manager interface should bind to.
+
+Go ahead and read the API and start developing :)
+
+Shift8 Queue Mysql Processor
+----------------------------
+
+In order to use the included Shift8 Queue Mysql Processor you need to create table Shift8_Queue:
+
+CREATE TABLE `Shift8_Queue` (
+  `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `command` varchar(64) NOT NULL,
+  `arguments` varchar(512) NOT NULL,
+  `response` text,
+  `date_added` datetime DEFAULT NULL,
+  `date_executed` datetime DEFAULT NULL,
+  PRIMARY KEY (`queue_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8
+
+You can easily create a new Mysql Processor to support your table structure/custom parameters. I am planning in a feature version to
+extend Shift8_Queue_Processor_Mysql to be a bit more generic.
+
+Todo
+----
+
+* This version of Shift8 is considered an early version where many events returned by the remote asterisk might not be trapped properly. I have decided
+  to make it public to get some assistance in 
+
+* I need to populate the examples that come with Shift8
+
+* I have started building a GUI (web frontend) based on AJAX and Shift8, but since I am lousy on graphical design, If anyone is willing to assist please 
+  drop me a line
+
+* Fix documentation

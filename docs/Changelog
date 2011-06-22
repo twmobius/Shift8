@@ -1,0 +1,16 @@
+0.1.3 
+	* Fixed bug with proxy() not returning correct error when no asterisk could be reached
+	* Fixed a warning with an non existing variable
+0.1.2
+	* Fixed wrong parameter Date on Originate Action
+	* Added urlencode() in all variables passed to AJAM
+	* Removed a debug syslog message
+
+0.1.1
+	* Changed queueAddInterface to support member, penalty, and paused status
+	* Added support for saving and retrieving the last error message that has occurred in the communication
+	  with the remote asterisk (via setLastError()/getLastError())
+	* Corrected a bug on proxy function that would cause the request to be sent twice on the remote asterisk
+	  server
+0.1
+	Initial release
