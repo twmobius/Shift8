@@ -1305,7 +1305,7 @@ class Shift8 {
 		$response = $this->proxy(
 				$this->_ajam,
 				array(
-					'Action'	=>	'CoreShowChannel'
+					'Action'	=>	'CoreShowChannels'
 				)
 		);
 
