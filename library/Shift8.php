@@ -451,7 +451,9 @@ class Shift8 {
 	 * @return Shift8_Event[] or null if it was unable to retrieve any information
 	 */
 	public function getQueueStatus( $queue = false, $member = false ) {
-		$parameters = array('Action' => 'QueueStatus');
+		$parameters = array(
+			'Action' => 'QueueStatus'
+		);
 
 		if( $queue )
 			$parameters['Queue'] = $queue;
@@ -477,7 +479,9 @@ class Shift8 {
 	 * @return Shift8_Event[] or null if it was unable to retrieve any information
 	 */
 	public function getQueueSummary( $queue = false ) {
-		$parameters = array('Action' => 'QueueSummary');
+		$parameters = array(
+			'Action' => 'QueueSummary'
+		);
 
 		if( $queue )
 			$parameters['Queue'] = $queue;
@@ -1072,8 +1076,6 @@ class Shift8 {
 				)
 		);
 
-		$response = $this->proxy( $this->_ajam, $parameters );
-
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
 			return true;
 		}
@@ -1100,10 +1102,7 @@ class Shift8 {
 				)
 		);
 
-		$response = $this->proxy( $this->_ajam, $parameters );
-
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
-			// @todo Check what this returns
 			return $this->processEvents($response->xpath("/ajax-response/response/generic[@event]"));
 		}
 
@@ -1124,14 +1123,12 @@ class Shift8 {
 		$response = $this->proxy(
 				$this->_ajam,
 				array(
-					'Action'	=>	'DBGet',
+					'Action'	=>	'DBPut',
 					'Family'	=>	$family,
 					'Key'		=>	$key,
 					'Val'		=>	($value) ? $value : ''
 				)
 		);
-
-		$response = $this->proxy( $this->_ajam, $parameters );
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
 			return true;
@@ -1820,13 +1817,13 @@ class Shift8 {
 		$parameters = array(
 			'Action'	=>	'Status'
 		);
-		
+
 		if( $channel )
 			$parameters['Channel'] = $channel;
-			
+
 		if( $variables )
 			$parameters['Variables'] = $variables;
-		
+
 		$response = $this->proxy( $this->_ajam, $parameters );
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
@@ -1875,10 +1872,10 @@ class Shift8 {
 			'Action'	=>	'GetConfig',
 			'Filename'	=>	$filename
 		);
-		
+
 		if( $category )
 			$parameters['Category'] = $category;
-		
+
 		$response = $this->proxy($this->_ajam,$parameters);
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
@@ -1902,10 +1899,10 @@ class Shift8 {
 			'Action'	=>	'GetVar',
 			'Variable'	=>	$variable
 		);
-		
+
 		if( $channel )
 			$parameters['Channel'] = $channel;
-			
+
 		$response = $this->proxy($this->_ajam, $parameters);
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
@@ -1931,7 +1928,7 @@ class Shift8 {
 			'Variable'	=>	$variable,
 			'Value'		=>	$value
 		);
-		
+
 		$response = $this->proxy($this->_ajam, $parameters);
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
@@ -1943,10 +1940,10 @@ class Shift8 {
 	}
 
 	/**
-	 * Hangup a channel 
+	 * Hangup a channel
 	 *
 	 * @param string $channel The channel name to be hungup
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function hangup( $channel ) {
@@ -2027,25 +2024,25 @@ class Shift8 {
 		if( (!$this->_ajam && !$ajam) || (!$this->_manager && !$manager) || (!$this->_secret && !$secret) )
 			throw new Shift8_Exception("No connection credentials have been found. Please read the Shift8 documentation");
 
-		if( $ajam ) 
+		if( $ajam )
 			$this->_ajam = $ajam;
 
 		if( $manager )
 			$this->_manager = $manager;
 
 		if( $secret )
-			$this->_secret = $secret; 
+			$this->_secret = $secret;
 
-		$response = $this->proxy( 
+		$response = $this->proxy(
 				$this->_ajam,
-				array( 
+				array(
 					'Action'	=>	'login',
 					'Username'	=>	$this->_manager,
 					'Secret'	=>	$this->_secret
 				)
 		);
 
-		if( ($res = $response->xpath("/ajax-response/response/generic[@response='Success']")) ) 
+		if( ($res = $response->xpath("/ajax-response/response/generic[@response='Success']")) )
 			return true;
 
 		$this->setLastError($response->xpath("/ajax-response/response/generic[@response='Error']"));
@@ -2054,18 +2051,18 @@ class Shift8 {
 
 	/**
 	 * Logs off from the remote asterisk server
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function logoff() {
-		$response = $this->proxy( 
+		$response = $this->proxy(
 				$this->_ajam,
-				array( 
+				array(
 					'Action'	=>	'logoff'
 				)
 		);
 
-		if( ($res = $response->xpath("/ajax-response/response/generic[@response='Goodbye']")) ) 
+		if( ($res = $response->xpath("/ajax-response/response/generic[@response='Goodbye']")) )
 			return true;
 
 		$this->setLastError($response->xpath("/ajax-response/response/generic[@response='Error']"));
@@ -2202,8 +2199,8 @@ class Shift8 {
 	}
 
 	/**
-	 * Retrieves the asterisk cookie. 
-	 * This can be used to set the cookie value to a PHP session so as to establish a permanent connection between a web application and the 
+	 * Retrieves the asterisk cookie.
+	 * This can be used to set the cookie value to a PHP session so as to establish a permanent connection between a web application and the
 	 * Asterisk AJAM interface. Don't forget to close the session since php sessions are locking
 	 *
 	 * @return string
@@ -2213,7 +2210,7 @@ class Shift8 {
 	}
 
 	/**
-	 * Sets the cookie to be used for the connection with the remote asterisk server. 
+	 * Sets the cookie to be used for the connection with the remote asterisk server.
 	 *
 	 * @param string $cookie The cookie from an already established connection to a remote asterisk server
 	 *
