@@ -1562,7 +1562,7 @@ class Shift8 {
 		);
 
 		if( $response->xpath("/ajax-response/response/generic[@response='Success']") ) {
-			return $this->processEvents($response->xpath("/ajax-response/response/generic[@event]"));
+			return $this->processEvents($response->xpath("/ajax-response/response/generic[@response='Success']"));
 		}
 
 		$this->setLastError($response->xpath("/ajax-response/response/generic[@response='Error']"));
