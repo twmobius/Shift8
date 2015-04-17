@@ -61,7 +61,7 @@ Corrected a bug on proxy function that would cause the request to be sent twice 
 Added support for saving and retrieving the last error message that has occurred in the communication with the remote asterisk (via ```setLastError()/getLastError()```)
 Changed queueAddInterface to support member, penalty, and paused status
 
-*0.1
+* 0.1
 Initial release
 
 > Examples
